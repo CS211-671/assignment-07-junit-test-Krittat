@@ -35,30 +35,37 @@ class UserListTest {
         // TODO: change password of one user
         UU.changePassword("DogEatCat1","CatIsDelicious1","CatYummy1");
         // TODO: assert that user can change password
-        assertTrue(UU.changePassword("DogEatCat1","CatIsDelicious1","CatYummy1"));
-        // assertTrue(actual);
+        boolean test = UU.findUserByUsername("DogEatCat1").validatePassword("CatYummy1");
+        assertTrue(test);
     }
 
     @Test
     @DisplayName("User with correct password can login")
     public void testUserListShouldReturnObjectIfUsernameAndPasswordIsCorrect() {
         // TODO: add 3 users to UserList
-
+        UserList UU = new UserList();
+        UU.addUser("DogEatCat11","CatIsDelicious1");
+        UU.addUser("DogEatCat22","CatIsDelicious2");
+        UU.addUser("DogEatCat33","CatIsDelicious3");
         // TODO: call login() with correct username and password
-
+        User actual = UU.login("DogEatCat11","CatIsDelicious1");
         // TODO: assert that User object is found
-        // assertEquals(expected, actual);
+        User expected = UU.findUserByUsername("DogEatCat11");
+         assertEquals(expected, actual);
     }
 
     @Test
     @DisplayName("User with incorrect password cannot login")
     public void testUserListShouldReturnNullIfUsernameAndPasswordIsIncorrect() {
         // TODO: add 3 users to UserList
-
+        UserList UU = new UserList();
+        UU.addUser("DogEatCat11","CatIsDelicious1");
+        UU.addUser("DogEatCat22","CatIsDelicious2");
+        UU.addUser("DogEatCat33","CatIsDelicious3");
         // TODO: call login() with incorrect username or incorrect password
-
+        User actual = UU.login("DogEatCat11","CatIsNotDelicious1");
         // TODO: assert that the method return null
-        // assertNull(actual);
+         assertNull(actual);
     }
 
 }
